@@ -1,5 +1,66 @@
-# Vue 3 + TypeScript + Vite
+# 團隊任務管理後台
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+模擬企業內部任務管理系統，具備登入驗證、權限控管、任務管理與數據統計等功能。
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+🌐 **Demo**：https://task-manager-vue3.netlify.app  
+🔗 **GitHub**：https://github.com/boll84011336/task-manager
+
+---
+
+## 技術棧
+
+- **Vue3** Composition API
+- **TypeScript**
+- **Pinia** 全域狀態管理
+- **Vue Router** 路由與權限控管
+- **Tailwind CSS** 樣式
+- **Chart.js** 圖表
+- **Vite** 建構工具
+
+---
+
+## 功能說明
+
+### 登入系統
+
+- Mock 帳號驗證，token 存入 localStorage
+- Route Guard 依角色控管頁面存取
+- 重新整理後自動還原登入狀態
+
+### Dashboard
+
+- 任務總數、完成數、進行中、完成率統計
+- Chart.js 圓餅圖與長條圖即時呈現資料
+
+### 任務管理
+
+- 新增、編輯、刪除任務
+- 依狀態篩選（全部／待處理／進行中／已完成）
+- 狀態即時切換
+- Loading 狀態與空狀態處理
+
+### 使用者管理（admin 限定）
+
+- 使用者列表、搜尋篩選
+- 分頁功能
+- 新增、編輯、刪除使用者
+- 角色權限（admin／member）
+
+---
+
+## 測試帳號
+
+| 角色   | Email            | 密碼     |
+| ------ | ---------------- | -------- |
+| Admin  | admin@test.com   | 任意輸入 |
+| Member | member1@test.com | 任意輸入 |
+
+> Member 角色無法存取使用者管理頁面
+
+---
+
+## 本地運行
+
+```bash
+
+```
