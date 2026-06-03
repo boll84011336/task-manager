@@ -1,0 +1,136 @@
+import type { User, Task } from "../types";
+
+export const mockUsers: User[] = [
+  {
+    id: 1,
+    name: "Admin 王小明",
+    email: "admin@test.com",
+    role: "admin",
+  },
+  {
+    id: 2,
+    name: "李小華",
+    email: "member1@test.com",
+    role: "member",
+  },
+  {
+    id: 3,
+    name: "張小芳",
+    email: "member2@test.com",
+    role: "member",
+  },
+  {
+    id: 4,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 5,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 6,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 7,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 8,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 9,
+    name: "小花花",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 10,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 11,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 12,
+    name: "小花花",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 13,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+  {
+    id: 14,
+    name: "陳大文",
+    email: "member3@test.com",
+    role: "member",
+  },
+];
+
+export const mockTasks: Task[] = [
+  {
+    id: 1,
+    title: "設計登入頁面",
+    description: "完成登入頁面的 UI 設計與實作",
+    status: "done",
+    assignee: "李小華",
+    createdAt: "2024-01-01",
+    dueDate: "2024-01-10",
+  },
+  {
+    id: 2,
+    title: "實作任務管理 API",
+    description: "串接後端任務管理相關 API",
+    status: "in-progress",
+    assignee: "張小芳",
+    createdAt: "2024-01-05",
+    dueDate: "2024-01-20",
+  },
+  {
+    id: 3,
+    title: "撰寫單元測試",
+    description: "針對核心功能撰寫單元測試",
+    status: "todo",
+    assignee: "陳大文",
+    createdAt: "2024-01-08",
+    dueDate: "2024-01-25",
+  },
+  {
+    id: 4,
+    title: "優化頁面效能",
+    description: "分析並優化各頁面載入速度",
+    status: "todo",
+    assignee: "李小華",
+    createdAt: "2024-01-10",
+    dueDate: "2024-01-30",
+  },
+  {
+    id: 5,
+    title: "使用者權限管理",
+    description: "實作角色與權限控管機制",
+    status: "in-progress",
+    assignee: "王小明",
+    createdAt: "2024-01-12",
+    dueDate: "2024-02-01",
+  },
+];
