@@ -58,7 +58,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import type { Task, TaskStatus } from '../../../types'
 
 const props = defineProps<{
