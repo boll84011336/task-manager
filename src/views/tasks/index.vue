@@ -37,11 +37,15 @@
 
         <!-- 表單 Modal -->
         <TaskForm v-if="showForm" :task="editingTask" @close="closeForm" @submit="handleSubmit" />
+
+        <ConfirmModal v-if="showConfirm" title="刪除任務" message="確定要刪除這個任務嗎？此操作無法復原。" @confirm="confirmDelete"
+            @cancel="cancelDelete" />
     </div>
 </template>
 
 <script setup lang="ts">
 import BaseLoading from '../../components/base/BaseLoading.vue'
+import ConfirmModal from '../../components/base/ConfirmModal.vue'
 import { ref, computed, onMounted } from 'vue'
 import { useTaskStore } from '../../stores/task'
 import type { Task, TaskStatus } from '../../types'
@@ -51,8 +55,9 @@ import { useToast } from '../../composables/useToast'
 
 
 const taskStore = useTaskStore()
+const showConfirm = ref(false)
+const deletingId = ref<number | null>(null)
 const { success, error } = useToast()
-
 
 const showForm = ref(false)
 const editingTask = ref<Task | undefined>(undefined)
@@ -99,10 +104,21 @@ function handleSubmit(form: Omit<Task, 'id' | 'createdAt'>) {
 }
 
 function handleDelete(id: number) {
-    if (confirm('確定要刪除這個任務嗎？')) {
-        taskStore.deleteTask(id)
-        error('任務已刪除')
+    deletingId.value = id
+    showConfirm.value = true
+}
+
+function confirmDelete() {
+    if (deletingId.value !== null) {
+        taskStore.deleteTask(deletingId.value)
     }
+    showConfirm.value = false
+    deletingId.value = null
+}
+
+function cancelDelete() {
+    showConfirm.value = false
+    deletingId.value = null
 }
 
 function handleStatusChange(id: number, status: string) {

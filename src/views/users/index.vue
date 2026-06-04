@@ -76,6 +76,9 @@
 
         <!-- Modal -->
         <UserModal v-if="showModal" :user="editingUser" @close="closeModal" @submit="handleSubmit" />
+
+        <ConfirmModal v-if="showConfirm" title="刪除使用者" message="確定要刪除這個使用者嗎？此操作無法復原。" @confirm="confirmDelete"
+            @cancel="cancelDelete" />
     </div>
 </template>
 
@@ -85,6 +88,7 @@ import { useUserStore } from '../../stores/user'
 import type { User } from '../../types'
 import UserModal from './components/UserModal.vue'
 import BaseLoading from '../../components/base/BaseLoading.vue'
+import ConfirmModal from '../../components/base/ConfirmModal.vue'
 
 
 const userStore = useUserStore()
@@ -92,6 +96,8 @@ const userStore = useUserStore()
 const showModal = ref(false)
 const editingUser = ref<User | undefined>(undefined)
 const loading = ref(false)
+const showConfirm = ref(false)
+const deletingId = ref<number | null>(null)
 
 async function initUsers() {
     loading.value = true
@@ -129,8 +135,20 @@ function handleSubmit(form: Omit<User, 'id'>) {
 }
 
 function handleDelete(id: number) {
-    if (confirm('確定要刪除這個使用者嗎？')) {
-        userStore.deleteUser(id)
+    deletingId.value = id
+    showConfirm.value = true
+}
+
+function confirmDelete() {
+    if (deletingId.value !== null) {
+        userStore.deleteUser(deletingId.value)
     }
+    showConfirm.value = false
+    deletingId.value = null
+}
+
+function cancelDelete() {
+    showConfirm.value = false
+    deletingId.value = null
 }
 </script>

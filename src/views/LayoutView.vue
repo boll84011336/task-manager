@@ -10,7 +10,7 @@
                 <RouterLink v-for="item in navItems" :key="item.path" :to="item.path"
                     class="flex items-center gap-3 px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-indigo-50 hover:text-indigo-600 transition"
                     active-class="bg-indigo-50 text-indigo-600 font-medium">
-                    <span>{{ item.icon }}</span>
+                    <component :is="getIcon(item.icon)" class="w-5 h-5" />
                     <span>{{ item.label }}</span>
                 </RouterLink>
             </nav>
@@ -44,21 +44,38 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
+import {
+    ChartBarIcon,
+    ClipboardDocumentListIcon,
+    UsersIcon,
+    BeakerIcon
+} from '@heroicons/vue/24/outline'
+
 
 const router = useRouter()
 const authStore = useAuthStore()
 
 const navItems = computed(() => {
     const items = [
-        { path: '/dashboard', label: 'Dashboard', icon: '📊' },
-        { path: '/tasks', label: '任務管理', icon: '✅' },
-        { path: '/test', label: '測試管理', icon: '⚙️' },
+        { path: '/dashboard', label: 'Dashboard', icon: 'chart' },
+        { path: '/tasks', label: '任務管理', icon: 'clipboard' },
+        { path: '/test', label: '測試管理', icon: 'beaker' },
     ]
     if (authStore.user?.role === 'admin') {
-        items.push({ path: '/users', label: '使用者管理', icon: '👥' })
+        items.push({ path: '/users', label: '使用者管理', icon: 'users' })
     }
     return items
 })
+
+function getIcon(name: string) {
+    const map: Record<string, any> = {
+        chart: ChartBarIcon,
+        clipboard: ClipboardDocumentListIcon,
+        users: UsersIcon,
+        beaker: BeakerIcon
+    }
+    return map[name]
+}
 
 function handleLogout() {
     authStore.logout()

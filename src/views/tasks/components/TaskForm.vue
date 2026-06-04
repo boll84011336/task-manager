@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div class="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
         <div class="bg-white rounded-xl p-6 w-full max-w-md shadow-xl">
             <h3 class="text-lg font-bold text-gray-800 mb-4">
                 {{ isEdit ? '編輯任務' : '新增任務' }}
