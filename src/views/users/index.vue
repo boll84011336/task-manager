@@ -59,7 +59,8 @@
         </div>
 
         <!-- 分頁 -->
-        <div class="flex items-center justify-between mt-4 text-sm text-gray-500">
+        <!-- 分頁 -->
+        <div v-if="!loading" class="flex items-center justify-between mt-4 text-sm text-gray-500">
             <span>共 {{ userStore.filteredUsers.length }} 筆</span>
             <div class="flex gap-2">
                 <button @click="userStore.currentPage--" :disabled="userStore.currentPage === 1"

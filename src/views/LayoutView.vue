@@ -59,11 +59,13 @@ const navItems = computed(() => {
     const items = [
         { path: '/dashboard', label: 'Dashboard', icon: 'chart' },
         { path: '/tasks', label: '任務管理', icon: 'clipboard' },
-        { path: '/test', label: '測試管理', icon: 'beaker' },
+
     ]
     if (authStore.user?.role === 'admin') {
         items.push({ path: '/users', label: '使用者管理', icon: 'users' })
     }
+    items.push({ path: '/test', label: '測試管理', icon: 'beaker' })
+
     return items
 })
 
