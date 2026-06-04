@@ -57,7 +57,7 @@ import { useToast } from '../../composables/useToast'
 const taskStore = useTaskStore()
 const showConfirm = ref(false)
 const deletingId = ref<number | null>(null)
-const { success } = useToast()
+const { success, error } = useToast()
 
 const showForm = ref(false)
 const editingTask = ref<Task | undefined>(undefined)
@@ -111,6 +111,7 @@ function handleDelete(id: number) {
 function confirmDelete() {
     if (deletingId.value !== null) {
         taskStore.deleteTask(deletingId.value)
+        error('任務已刪除')
     }
     showConfirm.value = false
     deletingId.value = null
