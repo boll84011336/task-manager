@@ -57,7 +57,7 @@ import { useToast } from '../../composables/useToast'
 const taskStore = useTaskStore()
 const showConfirm = ref(false)
 const deletingId = ref<number | null>(null)
-const { success, error } = useToast()
+const { success } = useToast()
 
 const showForm = ref(false)
 const editingTask = ref<Task | undefined>(undefined)
