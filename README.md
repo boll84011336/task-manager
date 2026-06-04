@@ -2,7 +2,7 @@
 
 模擬企業內部任務管理系統，具備登入驗證、權限控管、任務管理與數據統計等功能。
 
-🌐 **Demo**：https://task-manager-vue3.netlify.app  
+🌐 **Demo**：https://task-manager-dem.netlify.app/login
 🔗 **GitHub**：https://github.com/boll84011336/task-manager
 
 ---
