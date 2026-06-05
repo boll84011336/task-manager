@@ -12,15 +12,15 @@
             <span>📅 {{ task.dueDate }}</span>
         </div>
         <div class="flex gap-2 mt-3">
-            <button @click="$emit('edit', task)" class="text-xs text-indigo-600 hover:underline">
+            <button v-if="canEdit" @click="$emit('edit', task)" class="text-xs text-indigo-600 hover:underline">
                 編輯
             </button>
-            <button @click="$emit('delete', task.id)" class="text-xs text-red-500 hover:underline">
+            <button v-if="canDelete" @click="$emit('delete', task.id)" class="text-xs text-red-500 hover:underline">
                 刪除
             </button>
-            <select :value="task.status"
+            <select :value="task.status" :disabled="!canEdit"
                 @change="$emit('statusChange', task.id, ($event.target as HTMLSelectElement).value)"
-                class="ml-auto text-xs border border-gray-200 rounded px-1 py-0.5">
+                class="ml-auto text-xs border border-gray-200 rounded px-1 py-0.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400">
                 <option value="todo">待處理</option>
                 <option value="in-progress">進行中</option>
                 <option value="done">已完成</option>
@@ -32,6 +32,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Task } from '../../../types'
+import { useAuthStore } from '@/stores/auth'
+
+const authStore = useAuthStore()
 
 const props = defineProps<{
     task: Task
@@ -55,5 +58,14 @@ const statusClass = computed(() => {
         done: 'bg-green-100 text-green-600',
     }
     return map[props.task.status]
+})
+
+const canEdit = computed(() => {
+    return authStore.user?.role === 'admin' ||
+        authStore.user?.name === props.task.assignee
+})
+
+const canDelete = computed(() => {
+    return authStore.user?.role === 'admin'
 })
 </script>

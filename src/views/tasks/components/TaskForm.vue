@@ -20,8 +20,8 @@
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">負責人</label>
-                    <input v-model="form.assignee" type="text"
-                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+                    <input v-model="form.assignee" type="text" :disabled="isMember"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed" />
                 </div>
 
                 <div>
@@ -60,6 +60,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { Task, TaskStatus } from '../../../types'
+import { useAuthStore } from '@/stores/auth'
+
 
 const props = defineProps<{
     task?: Task
@@ -72,11 +74,13 @@ const emit = defineEmits<{
 
 const isEdit = !!props.task
 const errorMsg = ref('')
+const authStore = useAuthStore()
+const isMember = authStore.user?.role === 'member'
 
 const form = ref({
     title: props.task?.title ?? '',
     description: props.task?.description ?? '',
-    assignee: props.task?.assignee ?? '',
+    assignee: props.task?.assignee ?? (isMember ? authStore.user?.name ?? '' : ''),
     dueDate: props.task?.dueDate ?? '',
     status: (props.task?.status ?? 'todo') as TaskStatus,
 })
