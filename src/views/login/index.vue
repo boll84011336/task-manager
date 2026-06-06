@@ -1,29 +1,58 @@
 <template>
-    <div class="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-        style="background-image: url('/bg1.png')">
-        <div class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-8 rounded-xl shadow-md w-full max-w-md">
-            <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">任務管理系統</h1>
+    <div class="min-h-screen flex items-center justify-center relative overflow-hidden bg-gray-900">
+        <!-- 背景光暈層 -->
+        <div class="absolute inset-0">
+            <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-500/30 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute inset-0 bg-[url('/bg1.png')] bg-cover bg-center opacity-20"></div>
+        </div>
 
+        <!-- Glass Card -->
+        <div class="relative z-10 w-full max-w-md p-8 rounded-2xl
+             bg-white/10 dark:bg-white/5
+             backdrop-blur-2xl
+             border border-white/20
+             shadow-[0_8px_32px_rgba(0,0,0,0.4)]
+             hover:scale-[1.01] transition">
+            <h1 class="text-2xl font-bold text-white mb-6 tracking-wide">
+                任務管理系統
+            </h1>
+
+            <!-- Email -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
-                <input v-model="form.email" type="email" placeholder="admin@test.com"
-                    class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200" />
+                <label class="block text-sm text-white/70 mb-1">Email</label>
+                <input v-model="form.email" type="email" placeholder="admin@test.com" class="w-full px-3 py-2 rounded-lg
+                 bg-white/10 border border-white/20
+                 text-white placeholder-white/40
+                 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
             </div>
 
+            <!-- Password -->
             <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">密碼</label>
-                <input v-model="form.password" type="password" placeholder="輸入密碼"
-                    class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200" />
+                <label class="block text-sm text-white/70 mb-1">密碼</label>
+                <input v-model="form.password" type="password" placeholder="輸入密碼" class="w-full px-3 py-2 rounded-lg
+                 bg-white/10 border border-white/20
+                 text-white placeholder-white/40
+                 focus:outline-none focus:ring-2 focus:ring-indigo-400" />
             </div>
 
-            <div v-if="errorMsg" class="mb-4 text-red-500 dark:text-red-400 text-sm">{{ errorMsg }}</div>
+            <!-- Error -->
+            <div v-if="errorMsg" class="mb-4 text-sm text-red-400">
+                {{ errorMsg }}
+            </div>
 
-            <button @click="handleLogin" :disabled="loading"
-                class="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition disabled:opacity-60">
-                {{ loading ? '登入中...' : '登入' }}
+            <!-- Button -->
+            <button @click="handleLogin" :disabled="loading" class="w-full py-2 rounded-lg font-medium
+               bg-gradient-to-r from-indigo-500 to-pink-500
+               text-white shadow-lg
+               hover:opacity-90 active:scale-[0.98]
+               transition disabled:opacity-50">
+                {{ loading ? "登入中..." : "登入" }}
             </button>
 
-            <p class="text-xs text-gray-400 dark:text-gray-500 mt-4">測試帳號：admin@test.com／密碼隨便輸入</p>
+            <p class="text-xs text-white/40 mt-4">
+                測試帳號：admin@test.com／密碼隨便輸入
+            </p>
         </div>
     </div>
 </template>
