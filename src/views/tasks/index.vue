@@ -1,24 +1,27 @@
 <template>
     <div class="p-6">
-        <div class="flex items-center justify-between mb-6">
-            <h2 class="text-2xl font-bold text-gray-800">任務管理</h2>
-            <button @click="openCreate"
-                class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition">
-                + 新增任務
-            </button>
+        <div class="mb-4">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">任務管理</h2>
+            <div class="flex items-center justify-between">
+                <!-- 篩選 -->
+                <div class="flex gap-2">
+                    <button v-for="filter in filters" :key="filter.value" @click="activeFilter = filter.value" :class="[
+                        'px-4 py-1.5 rounded-full text-sm font-medium transition',
+                        activeFilter === filter.value
+                            ? 'bg-indigo-600 text-white'
+                            : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600'
+                    ]">
+                        {{ filter.label }}
+                    </button>
+                </div>
+                <button @click="openCreate"
+                    class="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700 transition">
+                    + 新增任務
+                </button>
+            </div>
         </div>
 
-        <!-- 篩選 -->
-        <div class="flex gap-2 mb-6">
-            <button v-for="filter in filters" :key="filter.value" @click="activeFilter = filter.value" :class="[
-                'px-4 py-1.5 rounded-full text-sm font-medium transition',
-                activeFilter === filter.value
-                    ? 'bg-indigo-600 text-white'
-                    : 'bg-white text-gray-600 hover:bg-gray-100'
-            ]">
-                {{ filter.label }}
-            </button>
-        </div>
+
 
         <!-- Loading -->
         <BaseLoading v-if="loading" />
@@ -30,7 +33,7 @@
         </div>
 
         <!-- 空狀態 -->
-        <div v-else class="text-center py-20 text-gray-400">
+        <div v-else class="text-center py-20 text-gray-400 dark:text-gray-500">
             <p class="text-4xl mb-3">📭</p>
             <p class="text-sm">沒有任務</p>
         </div>
