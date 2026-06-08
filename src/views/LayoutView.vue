@@ -2,11 +2,11 @@
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900">
 
         <!-- 側邊欄 -->
-        <aside class="w-64 bg-gray-900 dark:bg-gray-950 flex flex-col shrink-0">
+        <aside class="w-64 bg-white dark:bg-gray-950 flex flex-col shrink-0">
 
             <!-- Logo -->
-            <div class="px-6 py-5 border-b border-gray-700/50">
-                <h1 class="text-2xl font-bold text-white tracking-wide">TaskFlow</h1>
+            <div class="px-6 py-5 mb-6  border-b border-gray-200 dark:border-gray-700/50">
+                <h1 class="text-2xl font-bold text-gray-500 tracking-wide">TaskFlow</h1>
                 <p class="text-xl text-gray-400 mt-0.5">管理後台</p>
             </div>
 
@@ -35,7 +35,7 @@
             </nav>
 
             <!-- 使用者資訊 -->
-            <div class="px-4 py-4 border-t border-gray-700/50">
+            <div class="px-4 py-4 border-t border-indigo-700/50 dark:border-gray-700/50">
                 <div class="flex items-center gap-3 mb-3">
                     <div
                         class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center text-sm font-bold text-white shrink-0">
