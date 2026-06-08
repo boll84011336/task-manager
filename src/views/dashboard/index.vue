@@ -24,11 +24,12 @@
 
         <!-- 圖表區 -->
         <div class="grid grid-cols-2 gap-4">
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm flex flex-col">
                 <h3 class="text-base font-semibold text-gray-700 dark:text-gray-200 mb-4">任務狀態分佈</h3>
-                <canvas ref="pieChartRef"
-                    style="max-height: 220px; max-width: 220px; margin: 0 auto; display: block;"></canvas>
-                <div class="flex flex-row gap-4 mt-4 justify-center">
+                <div class="w-full" style="aspect-ratio: 1; max-height: 280px;">
+                    <canvas ref="pieChartRef"></canvas>
+                </div>
+                <div class="flex flex-1 gap-4 mt-4 justify-center">
                     <div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                         <span class="w-3 h-3 bg-gray-200 inline-block"></span> 待處理
                     </div>
@@ -40,9 +41,11 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm">
+            <div class="bg-white dark:bg-gray-800 rounded-xl p-5 shadow-sm flex flex-col h-full">
                 <h3 class="text-base font-semibold text-gray-700 dark:text-gray-200 mb-4">任務完成進度</h3>
-                <canvas ref="barChartRef"></canvas>
+                <div class="flex-1 flex items-center">
+                    <canvas ref="barChartRef"></canvas>
+                </div>
             </div>
         </div>
     </div>
@@ -69,6 +72,8 @@ onMounted(() => {
                 }],
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: false,
                 plugins: { legend: { display: false } },
             },
         })
@@ -86,6 +91,9 @@ onMounted(() => {
                 }],
             },
             options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: 1.5,
                 plugins: { legend: { display: false } },
                 scales: { y: { beginAtZero: true } },
             },
